@@ -3,6 +3,14 @@ import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
+  linkActiveClass: 'active',
+  scrollBehavior(to, from, savedPosition) {
+    // console.log(to, from, savedPosition)
+    return {
+      top: 500, //預設載入時會滾到500的位置
+      behavior: 'smooth'
+    }
+  },
   routes: [
     {
       path: '/',
@@ -74,10 +82,17 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
+    },
+    {
+      //404頁面
+      path: '/:pathMatch(.*)*',
+      component: () => import('../views/NotFound.vue')
+    },
+    {
+      //重新導向
+      path: '/newPage/:pathMatch(.*)*',
+      component: () => import('../views/HomeView.vue')
     }
   ]
 })

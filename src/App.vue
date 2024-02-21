@@ -18,7 +18,7 @@ import HelloWorld from './components/HelloWorld.vue'
     </div>
   </header>
 
-  <div class="container"><RouterView /></div>
+  <div class="container" style="height: 300vh"><RouterView /></div>
 </template>
 
 <style scoped>
